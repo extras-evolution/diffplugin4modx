@@ -27,9 +27,9 @@ $table_prefix = "";
 $base_url = "";
 $base_path = "";
 
-if(isset($_SERVER['DOCUMENT_ROOT']) && file_exists($_SERVER['DOCUMENT_ROOT'].'/manager/includes/protect.inc.php')){
-	require_once $_SERVER['DOCUMENT_ROOT'].'/manager/includes/protect.inc.php'; 
-	if (!$rt = @include_once $_SERVER['DOCUMENT_ROOT']."/manager/includes/config.inc.php") {
+if(isset($_SERVER['DOCUMENT_ROOT']) && file_exists($_SERVER['DOCUMENT_ROOT'].'/'.MGR_DIR.'/includes/protect.inc.php')){
+	require_once $_SERVER['DOCUMENT_ROOT'].'/'.MGR_DIR.'/includes/protect.inc.php'; 
+	if (!$rt = @include_once $_SERVER['DOCUMENT_ROOT']."/".MGR_DIR."/includes/config.inc.php") {
 		return;
     }
 }else{
@@ -37,7 +37,7 @@ if(isset($_SERVER['DOCUMENT_ROOT']) && file_exists($_SERVER['DOCUMENT_ROOT'].'/m
 }
 
 define('MODX_API_MODE', true); 
-require_once(MODX_BASE_PATH.'manager/includes/document.parser.class.inc.php'); 
+require_once(MODX_MANAGER_PATH.'includes/document.parser.class.inc.php'); 
 $modx = new DocumentParser; 
 /*
 *	en: The database we don't need
