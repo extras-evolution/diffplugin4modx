@@ -163,7 +163,14 @@ switch($modx->Event->name){
 	case 'OnDocFormRender':{
 		$Diff=new ElementVer($modx,'document',$folderPlugin);
 		if($Diff->ignored($ignoredDoc)){
-			$out=$Diff->loadJs($idBlock,$which_jquery,$jqname,$js_src_type);
+			// Check for ManagerManager
+			$res = $modx->db->select('*', $modx->getFullTableName('site_plugins'), 'name="ManagerManager" AND disabled=0 ');
+			$mmActive = $modx->db->getRow($res);
+			if (!$mmActive) {
+				$out=$Diff->loadJs($idBlock,$which_jquery,$jqname,$js_src_type);
+			} else {
+				$out=$Diff->loadJs($idBlock,'not_include',$jqname,$js_src_type);
+			}
 			$modx->Event->output($out);
 		}
 		break;
