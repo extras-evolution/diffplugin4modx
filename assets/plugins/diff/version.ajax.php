@@ -27,6 +27,10 @@ $table_prefix = "";
 $base_url = "";
 $base_path = "";
 
+if( !defined(MGR_DIR) && is_file($_SERVER['DOCUMENT_ROOT'] . '/assets/cache/siteManager.php') ) {
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/assets/cache/siteManager.php');
+}
+
 if(isset($_SERVER['DOCUMENT_ROOT']) && file_exists($_SERVER['DOCUMENT_ROOT'].'/'.MGR_DIR.'/includes/protect.inc.php')){
 	require_once $_SERVER['DOCUMENT_ROOT'].'/'.MGR_DIR.'/includes/protect.inc.php'; 
 	if (!$rt = @include_once $_SERVER['DOCUMENT_ROOT']."/".MGR_DIR."/includes/config.inc.php") {
